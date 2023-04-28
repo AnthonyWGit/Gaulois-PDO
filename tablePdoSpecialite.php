@@ -11,20 +11,17 @@
     {
         die('Erreur : ' . $e->getMessage());
     }    
-    $sqlQuery1 =    'SELECT personnage.nom_personnage, personnage.adresse_personnage, lieu.nom_lieu FROM personnage     /*Writing request*/
-                    INNER JOIN lieu ON personnage.id_lieu = lieu.id_lieu';
+    $sqlQuery1 =    'SELECT specialite.nom_specialite, COUNT(personnage.id_personnage) FROM specialite INNER JOIN personnage ON specialite.id_specialite = personnage.id_specialite
+                    GROUP BY specialite.id_specialite
+                    ORDER BY COUNT(personnage.id_personnage) DESC';
     $persoLieuStatement = $mySQLconnection->prepare($sqlQuery1);                        //Prepare, execute, then fetch to retrieve data
-    $persoLieuStatement->execute();                                                     //The data we retrieve are in array form
+    $persoLieuStatement->execute();
     $table = $persoLieuStatement->fetchAll();
 
         foreach($table as $champ)
         {
             echo "<tr>
-            <td scope='row'>".$champ["nom_personnage"]."</td>
-            <td scope='row'>".$champ["adresse_personnage"]."</td>
-            <td scope='row'>".$champ["nom_lieu"]."</td>
+            <td scope='row'>".$champ["nom_specialite"]."</td>
+            <td scope='row'>".$champ["COUNT(personnage.id_personnage)"]."</td>
             </td>";         
         }
-
-
- 

@@ -9,20 +9,48 @@
 </head>
 <body>
     <div>
-    <table>
-        <thead>
-            <tr>
-                <td>Nom</td>
-                <td>Adresse</td>
-                <td>Lieu</td>
-            </tr>
-            <tbody>
+        <table class=table>
+            <thead>
+                <tr>
+                    <td scope="col">Nom</td>
+                    <td scope="col">Adresse</td>
+                    <td scope="col">Lieu</td>
+                </tr>
+                <tbody>
 
-                    <?php include('tablePDOperso.php') ?>
+                        <?php include('tablePdoPerso.php') ?>
 
-            </tbody>
-        </thead>
-    </table>
+                </tbody>
+            </thead>
+        </table>
+    </div>
+    <div>
+    <table class="table">
+            <thead>
+                <tr>
+                    <td scope="col">Spécialité</td>
+                    <td scope="col">Nombre de persos</td>
+                </tr>
+                <tbody>
+
+                        <?php include('tablePdoSpecialite.php') ?>
+
+                </tbody>
+            </thead>
+        </table>
+        <table class="table">
+            <thead>
+                <tr>
+                    <td scope="col">Potion</td>
+                    <td scope="col">Nombre ingrédients</td>
+                </tr>
+                <tbody>
+
+                        <?php include('tablePdoPotion.php') ?>
+
+                </tbody>
+            </thead>
+        </table>
     </div>
 </body>
 </html>
