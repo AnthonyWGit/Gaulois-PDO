@@ -22,7 +22,11 @@
     {
         die('Erreur : ' . $e->getMessage());
     }    
-
+    $sqlQuery1 =    'SELECT personnage.nom_personnage, personnage.adresse_personnage, lieu.nom_lieu FROM personnage     /*Writing request*/
+                    INNER JOIN lieu ON personnage.id_lieu = lieu.id_lieu';
+    $persoLieuStatement = $mySQLconnection->prepare($sqlQuery1);                        //Prepare, execute, then fetch to retrieve data
+    $persoLieuStatement->execute();
+    $table = $persoLieuStatement->fetchAll();
     ?>
     </div>
 </body>
