@@ -25,6 +25,4 @@
             <td scope='row'>".$champ["nom_lieu"]."</td>
             </td>";         
         }
-
-
  
