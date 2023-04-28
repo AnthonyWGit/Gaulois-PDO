@@ -11,10 +11,10 @@
     {
         die('Erreur : ' . $e->getMessage());
     }    
-    $sqlQuery1 =    'SELECT potion.nom_potion, COUNT(ingredient.id_ingredient) FROM potion INNER JOIN composer ON potion.id_potion = composer.id_potion
-    INNER JOIN ingredient ON composer.id_ingredient = ingredient.id_ingredient
-    GROUP BY potion.id_potion
-    ORDER BY COUNT(ingredient.id_ingredient) DESC';
+    $sqlQuery1 =    'SELECT potion.nom_potion, COUNT(ingredient.id_ingredient) AS "nb_ingredients" FROM potion INNER JOIN composer ON potion.id_potion = composer.id_potion
+                    INNER JOIN ingredient ON composer.id_ingredient = ingredient.id_ingredient
+                    GROUP BY potion.id_potion
+                    ORDER BY COUNT("nb_ingredients") DESC';
     $persoLieuStatement = $mySQLconnection->prepare($sqlQuery1);                        //Prepare, execute, then fetch to retrieve data
     $persoLieuStatement->execute();
     $table = $persoLieuStatement->fetchAll();
@@ -23,6 +23,6 @@
         {
             echo "<tr>
             <td scope='row'>".$champ["nom_potion"]."</td>
-            <td scope='row'>".$champ["COUNT(ingredient.id_ingredient)"]."</td>
+            <td scope='row'>".$champ["nb_ingredients"]."</td>
             </td>";         
         }

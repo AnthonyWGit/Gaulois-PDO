@@ -11,7 +11,7 @@
     {
         die('Erreur : ' . $e->getMessage());
     }    
-    $sqlQuery1 =    'SELECT specialite.nom_specialite, COUNT(personnage.id_personnage) FROM specialite INNER JOIN personnage ON specialite.id_specialite = personnage.id_specialite
+    $sqlQuery1 =    'SELECT specialite.nom_specialite, COUNT(personnage.id_personnage) AS "nb_persos" FROM specialite INNER JOIN personnage ON specialite.id_specialite = personnage.id_specialite
                     GROUP BY specialite.id_specialite
                     ORDER BY COUNT(personnage.id_personnage) DESC';
     $persoLieuStatement = $mySQLconnection->prepare($sqlQuery1);                        //Prepare, execute, then fetch to retrieve data
@@ -22,6 +22,6 @@
         {
             echo "<tr>
             <td scope='row'>".$champ["nom_specialite"]."</td>
-            <td scope='row'>".$champ["COUNT(personnage.id_personnage)"]."</td>
+            <td scope='row'>".$champ["nb_persos"]."</td>
             </td>";         
         }
