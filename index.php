@@ -9,25 +9,20 @@
 </head>
 <body>
     <div>
-    <?php 
-    try
-    {
-        $mySQLconnection = new PDO(                                                     //Connecting to SQL server
-            'mysql:host=127.0.0.1;dbname=gaulois;charset=utf8',
-            'root',
-            '',
-            [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);                              
-    }
-    catch (Exception $e) //catching errors                                              //Show error if we can't connect
-    {
-        die('Erreur : ' . $e->getMessage());
-    }    
-    $sqlQuery1 =    'SELECT personnage.nom_personnage, personnage.adresse_personnage, lieu.nom_lieu FROM personnage     /*Writing request*/
-                    INNER JOIN lieu ON personnage.id_lieu = lieu.id_lieu';
-    $persoLieuStatement = $mySQLconnection->prepare($sqlQuery1);                        //Prepare, execute, then fetch to retrieve data
-    $persoLieuStatement->execute();
-    $table = $persoLieuStatement->fetchAll();
-    ?>
+    <table>
+        <thead>
+            <tr>
+                <td>Nom</td>
+                <td>Adresse</td>
+                <td>Lieu</td>
+            </tr>
+            <tbody>
+
+                    <?php include('tablePDOperso.php') ?>
+
+            </tbody>
+        </thead>
+    </table>
     </div>
 </body>
 </html>
